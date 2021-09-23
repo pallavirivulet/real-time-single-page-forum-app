@@ -11,8 +11,10 @@ class CategoryFactory extends Factory
 
     public function definition(): array
     {
+        $word = $faker->word;
     	return [
-    	    //
+    	    'name' => $word,
+            'slug' => str_slug($word),
     	];
     }
 }
