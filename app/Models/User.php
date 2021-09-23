@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 use Laravel\Passport\HasApiTokens;
+use App\Models\Question;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -20,7 +21,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email','password'
     ];
 
     /**
@@ -29,6 +30,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', 'remember_token',
     ];
+
+    public function question()
+    {
+        return $this->hasMany(Question::class);
+    }
 }
